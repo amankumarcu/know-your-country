@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class = "page">
+        <div class="content">
+            <div class="title">
+                <h1>Know your country ?</h1>
+            </div>
+            <div class="search">
+                <form action="/submit" method="post">
+                    <input type="text" class = "searchinput" name = "search" placeholder="Type the name here">
+                    <button class= "submit" type="submit">Search</button>
+                </form>
+            </div>
+            <div class="cards">
+            <% if(locals.countriesinfo) {%>
+                <% for(let key in countriesinfo){ %>
+                    <% const country = countriesinfo[key]; %>
+                    <div class="card">
+                    <img src="<%= country.flagURL %>" alt="">
+                    <div class="innertext">
+                        <h1>Country : <%= country.name %></h1>
+                        <h3>Capital : <%= country.capital[0] %></h3>
+                        <h3>Region : <%= country.region %></h3>
+                        <h3>Currency : <%= country.currency %></h3>
+                    </div>
+                </div>
+                    <% } %>
+                <% } else{ %>
+            <% if(locals.name){ %>
+                <div class="card">
+                    <img src="<%= flagURL %>" alt="">
+                    <div class="innertext">
+                        <h1>Country : <%= name %></h1>
+                        <h3>Capital : <%= capital %></h3>
+                        <h3>Region : <%= region %></h3>
+                        <h3>Currency : <%= currency %></h3>
+                    </div>
+                </div>
+            <% } else { %>
+                <h2 class="innertext">No country found.</h2>
+                <% }%>
+        <% } %>
+        </div>
+        </div>
+    </div>
+</body>
+</html>
